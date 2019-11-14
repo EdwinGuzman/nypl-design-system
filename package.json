@@ -56,9 +56,11 @@
     "webpack": "^4.41.0"
   },
   "dependencies": {
+    "aws-sdk": "^2.569.0",
     "design-system-react-components": "file:src/react-components",
     "design-system-styles": "file:src/styles",
     "design-system-twig": "file:src/twig",
+    "dockerode": "^3.0.2",
     "storybook": "file:storybook"
   }
 }
