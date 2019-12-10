@@ -5,8 +5,7 @@ import { action } from "@storybook/addon-actions";
 
 export default {
   title: "Breadcrumb",
-  component: Breadcrumb,
-  decorators: [storyFn => <div style={{ backgroundColor: "grey" }}>{storyFn()}</div>],
+  component: Breadcrumb
 };
 
 const shortItems = [

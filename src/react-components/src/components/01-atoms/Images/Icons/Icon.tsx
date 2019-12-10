@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import Icons from "@nypl/design-system-icons/dist/img/sprite/sprite.svg";
 import bem from "../../../../utils/bem";
@@ -22,7 +21,6 @@ import bem from "../../../../utils/bem";
     render(): JSX.Element {
       let { modifiers, blockName, name, decorative, role, title, desc } = this.props;
       let icon_base_class = "icon";
-
       let iconProps = {
         "className": bem(icon_base_class, modifiers, blockName),
         "role": decorative ? "img" : role,
