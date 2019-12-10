@@ -1,5 +1,7 @@
 import * as React from "react";
 import Icons from "@nypl/design-system-icons/dist/img/sprite/sprite.svg";
+import sprite from "svg-sprite-loader/runtime/sprite.build";
+
 import bem from "../../../../utils/bem";
 
   // Wrapper Class for Icon
@@ -19,6 +21,8 @@ import bem from "../../../../utils/bem";
     }
 
     render(): JSX.Element {
+      const spriteContent = sprite.stringify();
+
       let { modifiers, blockName, name, decorative, role, title, desc } = this.props;
       let icon_base_class = "icon";
       let iconProps = {
@@ -31,13 +35,15 @@ import bem from "../../../../utils/bem";
 
       return (
         <svg {...iconProps} >
+            {Icons.content}
+
             {title &&
               <title id={`title-${name}`}>{ title }</title>
             }
             {desc &&
               <desc id={`title-${name}`}>{ desc }</desc>
             }
-            <use href={`${Icons}#${name}`} />
+            <use xlinkHref={`#sprite_${name}`} />
         </svg>
       );
     }
