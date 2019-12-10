@@ -1,17 +1,25 @@
 const path = require('path');
 const globImporter = require('node-sass-glob-importer');
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin');
 
 // Export a function. Accept the base config as the only param.
 module.exports = async ({ config, mode }) => {
-  
   // `mode` has a value of 'DEVELOPMENT' or 'PRODUCTION'
   // You can change the configuration based on that.
   // 'PRODUCTION' is used when building the static version of storybook.
+  
+  config.module.rules = config.module.rules.map( data => {
+    if (/svg\|/.test( String( data.test ) ))
+      data.test = /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|ttf|woff|woff2|cur|ani)(\?.*)?$/;
+    return data;
+  });
 
-  // config.module.rules.push({
-  //     test: /\.svg$/,
-  //     loader: 'svg-sprite-loader'
-  // });
+  config.module.rules.push({
+    test: /\.svg$/,
+    use: [{
+      loader: 'svg-sprite-loader'
+    }],
+  });
 
   // Adds SCSS support
   config.module.rules.push({
@@ -64,6 +72,8 @@ module.exports = async ({ config, mode }) => {
     rule.include = /../;
     rule.exclude = /node_modules/;
   });
+
+  config.plugins.push(new SpriteLoaderPlugin());
 
   // Return the altered config
   return config;
